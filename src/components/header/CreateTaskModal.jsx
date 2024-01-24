@@ -1,8 +1,8 @@
-import Calendar from "./Calendar";
+import Calendar from "../../utils/Calendar";
 
 export default function CreateTaskModal() {
   return (
-    <div class="pop-new-card" id="popNewCard">
+    <div className="pop-new-card" id="popNewCard">
       <div class="pop-new-card__container">
         <div class="pop-new-card__block">
           <div class="pop-new-card__content">

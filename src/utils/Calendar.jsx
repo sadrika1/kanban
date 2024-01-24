@@ -45,9 +45,7 @@ export default function Calendar() {
           <div class="calendar__cell _cell-day">28</div>
           <div class="calendar__cell _cell-day">29</div>
           <div class="calendar__cell _cell-day _weekend">30</div>
-          <div class="calendar__cell _other-month _weekend">
-            1
-          </div>
+          <div class="calendar__cell _other-month _weekend">1</div>
         </div>
       </div>
     )
