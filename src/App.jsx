@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/header/Header";
-import Columns from "./components/Column";
+import Columns from "./components/Columns";
 import TaskBrowse from "./components/TaskBrowse";
 
 function App() {
@@ -11,7 +11,11 @@ function App() {
         <div class="container">
           <div class="main__block">
             <div class="main__content">
-              <Columns />
+              <Columns props={"Без статуса"}/>
+              <Columns props={"Нужно сделать"}/>
+              <Columns props={"В работе"}/>
+              <Columns props={"Тестирование"}/>
+              <Columns props={"Готово"}/>
               <TaskBrowse />
             </div>
           </div>

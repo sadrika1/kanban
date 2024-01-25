@@ -1,9 +1,7 @@
-// todo: 1 изменяемый компонент на все задачи
-
 import CalendarSVG from "../utils/svg/CalendarSVG";
 
 export default function TaskItem() {
-  return (
+  return (    
     <div class="cards__item">
       <div class="cards__card card">
         <div class="card__group">
