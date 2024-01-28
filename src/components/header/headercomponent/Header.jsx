@@ -1,5 +1,5 @@
-import CreateTaskModal from "./CreateTaskModal";
-import Logout from "./Logout";
+import CreateTaskModal from "../taskmodal/CreateTaskModal";
+import Logout from "../logout/Logout";
 
 export default function Header() {
   return (

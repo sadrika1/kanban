@@ -1,7 +1,7 @@
 import "./App.css";
-import Header from "./components/header/Header";
-import Columns from "./components/Columns";
-import TaskBrowse from "./components/TaskBrowse";
+import Header from "./components/header/headercomponent/Header";
+import Columns from "./components/columns/Columns";
+import TaskBrowse from "./components/taskbrowse/TaskBrowse";
 
 function App() {
   return (

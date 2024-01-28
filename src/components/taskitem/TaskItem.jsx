@@ -1,4 +1,4 @@
-import CalendarSVG from "../utils/svg/CalendarSVG";
+import CalendarSVG from "../../utils/svg/CalendarSVG";
 
 export default function TaskItem() {
   return (    

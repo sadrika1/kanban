@@ -1,4 +1,4 @@
-import TaskItem from "./TaskItem";
+import TaskItem from "../taskitem/TaskItem";
 
 export default function Columns({props}) {
   return (
