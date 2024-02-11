@@ -1,31 +1,26 @@
 import { useState } from "react";
+import * as S from "./Popuser.styled";
 
 export default function PopUser() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="header__user _hover02"
-      >
+      <S.HeaderUserBtn onClick={() => setIsOpen(!isOpen)} className="_hover02">
         Ivan Ivanov
-      </button>
+      </S.HeaderUserBtn>
       {isOpen && (
-        <div
-          className="header__pop-user-set pop-user-set"
-          id="user-set-target"
-        >
-          <p className="pop-user-set__name">Ivan Ivanov</p>
-          <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-          <div className="pop-user-set__theme">
+        <S.HeaderPopUserSet id="user-set-target">
+          <S.PopUserName>Ivan Ivanov</S.PopUserName>
+          <S.PopUserMail>ivan.ivanov@gmail.com</S.PopUserMail>
+          <S.PopUserTheme>
             <p>Темная тема</p>
-            <input type="checkbox" className="checkbox" name="checkbox" />
-          </div>
-          <button type="button" className="_hover03">
+            <S.ThemeCheckbox type="checkbox"name="checkbox" />
+          </S.PopUserTheme>
+          <S.PopExitBtn type="button" className="_hover03">
             <a href="#popExit">Выйти</a>
-          </button>
-        </div>
+          </S.PopExitBtn>
+        </S.HeaderPopUserSet>
       )}
     </>
   );

@@ -1,13 +1,11 @@
 import CalendarSVG from "../../utils/svg/CalendarSVG";
+import * as S from './taskitem.styled'
 
 export default function TaskItem() {
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          {/* <div classNameName={`card__theme ${styles[themeclassName]}`}>
-            <p classNameName={props.textclassName}>{props.taskName}</p>
-          </div> */}
+    <S.CardsItem>
+      <S.CardsCard>
+        <S.CardGroup>
           <div className="card__theme  _orange">
             <p className="_orange">Web Design</p>
           </div>
@@ -18,7 +16,7 @@ export default function TaskItem() {
               <div></div>
             </div>
           </a>
-        </div>
+        </S.CardGroup>
         <div className="card__content">
           <a href="" target="_blank">
             <h3 className="card__title">Название задачи</h3>
@@ -28,7 +26,7 @@ export default function TaskItem() {
             <p>30.10.23</p>
           </div>
         </div>
-      </div>
-    </div>
+      </S.CardsCard>
+    </S.CardsItem>
   );
 }

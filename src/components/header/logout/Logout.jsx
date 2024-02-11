@@ -1,23 +1,23 @@
+import * as S from "./Logout.styled";
+
 export default function Logout() {
   return (
-    <div className="pop-exit" id="popExit">
-      <div className="pop-exit__container">
-        <div className="pop-exit__block">
-          <div className="pop-exit__ttl">
-            <h2>Выйти из аккаунта?</h2>
-          </div>
-          <form className="pop-exit__form" id="formExit" action="#">
-            <div className="pop-exit__form-group">
-              <button className="pop-exit__exit-yes _hover01" id="exitYes">
-                <a href="#">Да, выйти</a>{" "}
-              </button>
-              <button className="pop-exit__exit-no _hover03" id="exitNo">
-                <a href="#">Нет, остаться</a>{" "}
-              </button>
-            </div>
+    <S.PopExit className="pop-exit" id="popExit">
+      <S.PopExitContainer>
+        <S.PopExitBlock>
+          <S.PopExitTitle>Выйти из аккаунта?</S.PopExitTitle>
+          <form id="formExit" action="#">
+            <S.PopExitForm>
+              <S.ButtonExitYes className=" _hover01" id="exitYes">
+                Да, выйти
+              </S.ButtonExitYes>
+              <S.ButtonExitNo className=" _hover03" id="exitNo">
+                Нет, остаться
+              </S.ButtonExitNo>
+            </S.PopExitForm>
           </form>
-        </div>
-      </div>
-    </div>
+        </S.PopExitBlock>
+      </S.PopExitContainer>
+    </S.PopExit>
   );
 }

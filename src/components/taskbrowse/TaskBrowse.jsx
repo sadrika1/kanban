@@ -1,17 +1,18 @@
 import Calendar from "../../utils/Calendar";
+import * as S from './TaskBrowse.styled'
 
 export default function TaskBrowse() {
   return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
+    <S.PopBrowse id="popBrowse">
+      <S.PopBrowseContainer>
+        <S.PopBrowseBlock>
+          <S.PopBrowseContent>
+            <S.PopBrowseTop>
+              <S.PopBrowseTitle>Название задачи</S.PopBrowseTitle>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
-            </div>
+            </S.PopBrowseTop>
             <div className="pop-browse__status status">
               <p className="status__p subttl">Статус</p>
               <div className="status__themes">
@@ -32,25 +33,23 @@ export default function TaskBrowse() {
                 </div>
               </div>
             </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+            <S.PopBrowseWrap>
+              <S.FormBrowse
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
+                <S.FormBrowseBlock>
                   <label for="textArea01" className="subttl">
                     Описание задачи
                   </label>
-                  <textarea
-                    className="form-browse__area"
+                  <S.FormBrowseArea
                     name="text"
                     id="textArea01"
                     readonly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                  ></S.FormBrowseArea>
+                </S.FormBrowseBlock>
+              </S.FormBrowse>
               <div className="pop-new-card__calendar calendar">
                 <p className="calendar__ttl subttl">Даты</p>
                 <div className="calendar__block">
@@ -90,7 +89,7 @@ export default function TaskBrowse() {
                   </div>
                 </div>
               </div>
-            </div>
+            </S.PopBrowseWrap>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__theme _orange _active-category">
@@ -129,9 +128,9 @@ export default function TaskBrowse() {
                 <a href="#">Закрыть</a>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </S.PopBrowseContent>
+        </S.PopBrowseBlock>
+      </S.PopBrowseContainer>
+    </S.PopBrowse>
   );
 }

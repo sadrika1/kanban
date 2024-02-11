@@ -1,15 +1,16 @@
 import CreateTaskModal from "../taskmodal/CreateTaskModal";
 import Logout from "../logout/Logout";
 import PopUser from "../../popuser/PopUser";
+import * as S from './header.styled'
 
 export default function Header({ addCard }) {
   return (
-    <header class="header">
+    <S.Header>
       <CreateTaskModal />
       <Logout />
 
       <div class="container">
-        <div class="header__block">
+        <S.HeaderBlock>
           <div class="header__logo _show _light">
             <a href="" target="_self">
               <img src="/public/logo.png" alt="logo" />
@@ -20,18 +21,18 @@ export default function Header({ addCard }) {
               <img src="/public/logo_dark.png" alt="logo" />
             </a>
           </div>
-          <nav class="header__nav">
-            <button
+          <S.HeaderNav>
+            <S.CreateTaskBtn
               onClick={addCard}
               class="header__btn-main-new _hover01"
               id="btnMainNew"
             >
               Создать новую задачу
-            </button>
+            </S.CreateTaskBtn>
             <PopUser />
-          </nav>
-        </div>
+          </S.HeaderNav>
+        </S.HeaderBlock>
       </div>
-    </header>
+    </S.Header>
   );
 }
