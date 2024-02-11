@@ -1,7 +1,8 @@
 import CreateTaskModal from "../taskmodal/CreateTaskModal";
 import Logout from "../logout/Logout";
+import PopUser from "../../popuser/PopUser";
 
-export default function Header() {
+export default function Header({ addCard }) {
   return (
     <header class="header">
       <CreateTaskModal />
@@ -20,23 +21,14 @@ export default function Header() {
             </a>
           </div>
           <nav class="header__nav">
-            <button class="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+            <button
+              onClick={addCard}
+              class="header__btn-main-new _hover01"
+              id="btnMainNew"
+            >
+              Создать новую задачу
             </button>
-            <a href="#user-set-target" class="header__user _hover02">
-              Ivan Ivanov
-            </a>
-            <div class="header__pop-user-set pop-user-set" id="user-set-target">
-              <p class="pop-user-set__name">Ivan Ivanov</p>
-              <p class="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-              <div class="pop-user-set__theme">
-                <p>Темная тема</p>
-                <input type="checkbox" class="checkbox" name="checkbox" />
-              </div>
-              <button type="button" class="_hover03">
-                <a href="#popExit">Выйти</a>
-              </button>
-            </div>
+            <PopUser />
           </nav>
         </div>
       </div>

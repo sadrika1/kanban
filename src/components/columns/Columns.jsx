@@ -1,18 +1,19 @@
 import TaskItem from "../taskitem/TaskItem";
 
-export default function Columns({props}) {
+export default function Columns({ title, cardList }) {
   return (
     <>
       <div class="main__column column">
         <div class="column__title">
-          <p>{props}</p>
+          <p>{title}</p>
         </div>
         <div class="cards">
-          <TaskItem />
-          <TaskItem />
-          <TaskItem />
-          <TaskItem />
-          <TaskItem />
+          {cardList.map((card) => (
+            <TaskItem 
+            theme={card.theme} 
+            title={card.title} 
+            key={card.id} />
+          ))}
         </div>
       </div>
     </>

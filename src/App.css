@@ -771,6 +771,8 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #565eef;
+  border: none;
+  background-color: #fff;
 }
 .header__user::after {
   content: "";
@@ -785,7 +787,7 @@ body {
   padding: 0;
 }
 .header__pop-user-set {
-  display: none;
+  display: block;
   position: absolute;
   top: 61px;
   right: 0;
