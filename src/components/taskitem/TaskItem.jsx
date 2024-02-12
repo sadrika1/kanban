@@ -1,31 +1,42 @@
+import { useState } from "react";
+import { TopicTitleColor, topicStyles } from "../../styled/topic";
 import CalendarSVG from "../../utils/svg/CalendarSVG";
-import * as S from './taskitem.styled'
+import * as S from "./taskitem.styled";
 
-export default function TaskItem() {
+export default function TaskItem({ theme, title, date }) {
+const [isOpenEditTaskModal, setIsOpenEditTaskModal] = useState(false);
+
+const handleOpeneEditModal = () => {
+  setIsOpenEditTaskModal(true);
+};
+
+const handleCloseEditModal = () => {
+  setIsOpenEditTaskModal(false);
+};
   return (
     <S.CardsItem>
       <S.CardsCard>
         <S.CardGroup>
-          <div className="card__theme  _orange">
-            <p className="_orange">Web Design</p>
-          </div>
-          <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </a>
+          <S.CardTheme $topicColor={TopicTitleColor[theme]}>
+            <S.TopicText>{theme}</S.TopicText>
+          </S.CardTheme>
+            <S.EditCardButton             
+            onClick={handleOpeneEditModal}
+            isOpenEditTaskModal={isOpenEditTaskModal}
+            setIsOpenEditTaskModal={setIsOpenEditTaskModal}
+            handleCloseEditModal={handleCloseEditModal}>
+              <S.CircleBtn />
+              <S.CircleBtn />
+              <S.CircleBtn />
+            </S.EditCardButton>
         </S.CardGroup>
-        <div className="card__content">
-          <a href="" target="_blank">
-            <h3 className="card__title">Название задачи</h3>
-          </a>
-          <div className="card__date">
+        <S.CardContent>
+            <S.CardTitle>{title}</S.CardTitle>
+          <S.CardDateBlock>
             <CalendarSVG />
-            <p>30.10.23</p>
-          </div>
-        </div>
+            <S.CardDateText>{date}</S.CardDateText>
+          </S.CardDateBlock>
+        </S.CardContent>
       </S.CardsCard>
     </S.CardsItem>
   );

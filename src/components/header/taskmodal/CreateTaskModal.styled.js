@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { topicStyles } from "../../../styled/topic";
 
 export const PopNewCard = styled.div`
-  display: none;
+  display: block;
   width: 100%;
   min-width: 375px;
   height: 100%;
@@ -76,15 +77,20 @@ export const CardFromNewInput = styled.input`
   border-radius: 8px;
   font-size: 14px;
   line-height: 1;
-  letter-spacing: -0.14px;
 
   &::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
     color: #94a6be;
-    letter-spacing: -0.14px;
   }
+`;
+
+export const CardFromNewArea = styled(CardFromNewInput)`
+  max-width: 370px;
+  margin-top: 14px;
+  height: 200px;
+  line-height: 1px;
 `;
 
 export const LabelFormSubtitle = styled.label`
@@ -92,6 +98,8 @@ export const LabelFormSubtitle = styled.label`
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+  padding-bottom: 10px;
+  padding-top: 10px;
 `;
 
 export const Calendar = styled.div`
@@ -143,4 +151,44 @@ export const CreateNewCardButton = styled.button`
   line-height: 1;
   color: #ffffff;
   float: right;
+`;
+
+export const PopNewCardClose = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #94a6be;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 1px solid gray;
+`;
+
+export const CategoriesTitle = styled.div`
+  margin-bottom: 14px;
+`;
+
+export const CategoriesThemeBlock = styled.div`
+  display: flex;
+  gap: 30px;
+  width: auto;
+  height: 30px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  margin-right: 7px;
+  opacity: 0.4;
+`;
+
+export const CategoriesTheme = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+export const CategoriesName = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
 `;

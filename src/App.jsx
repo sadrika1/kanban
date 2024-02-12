@@ -1,9 +1,12 @@
 import "./App.css";
+import * as S from "./app.styled";
 import Header from "./components/header/headercomponent/Header";
 import Columns from "./components/columns/Columns";
 import TaskBrowse from "./components/taskbrowse/TaskBrowse";
 import { cardList } from "./data";
 import { useEffect, useState } from "react";
+import { Container } from "./styled/common";
+import { GlobalStyle } from "./styled/globalstyles";
 
 const statusList = [
   "Без статуса",
@@ -13,7 +16,12 @@ const statusList = [
   "Готово",
 ];
 
-function App() {
+function App({
+  isOpenNewTaskModal,
+  setIsOpenNewTaskModal,
+  isOpenEditTaskModal,
+  setIsOpenEditTaskModal,
+}) {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,7 +34,7 @@ function App() {
   function addCard() {
     const newCard = {
       id: cards.lenght + 1,
-      theme: "Wev Design",
+      theme: "Web Design",
       title: "Название задачи",
       date: "30.10.23",
       status: "Без статуса",
@@ -34,29 +42,36 @@ function App() {
     setCards([...cards, newCard]);
   }
   return (
-    <div className="wrapper">
-      <Header addCard={addCard} />
-      {isLoading ? (
-        "Данные загружаются..."
-      ) : (
-        <main class="main">
-          <div class="container">
-            <div class="main__block">
-              <div class="main__content">
-                {statusList.map((status) => (
-                  <Columns
-                    title={status}
-                    key={status}
-                    cardList={cards.filter((card) => card.status === status)}
-                  />
-                ))}
-                <TaskBrowse />
-              </div>
-            </div>
-          </div>
-        </main>
-      )}
-    </div>
+    <>
+      <GlobalStyle />
+      <S.Wrapper>
+        <Header
+          addCard={addCard}
+          isOpenNewTaskModal={isOpenNewTaskModal}
+          setIsOpenNewTaskModal={setIsOpenNewTaskModal}
+        />
+        {isLoading ? (
+          "Данные загружаются..."
+        ) : (
+          <S.Main>
+            <Container>
+              <S.MainBlock>
+                <S.MainContent>
+                  {statusList.map((status) => (
+                    <Columns
+                      title={status}
+                      key={status}
+                      cardList={cards.filter((card) => card.status === status)}
+                    />
+                  ))}
+                  <TaskBrowse/>
+                </S.MainContent>
+              </S.MainBlock>
+            </Container>
+          </S.Main>
+        )}
+      </S.Wrapper>
+    </>
   );
 }
 

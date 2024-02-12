@@ -8,7 +8,11 @@ export default function Columns({ title, cardList }) {
         <S.ColumnTitle>{title}</S.ColumnTitle>
         <S.CardsBlock>
           {cardList.map((card) => (
-            <TaskItem theme={card.theme} title={card.title} key={card.id} />
+            <TaskItem 
+            theme={card.theme} 
+            title={card.title} 
+            date={card.date}
+            key={card.id} />
           ))}
         </S.CardsBlock>
       </S.MainColumn>

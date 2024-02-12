@@ -1,15 +1,30 @@
 import CreateTaskModal from "../taskmodal/CreateTaskModal";
 import Logout from "../logout/Logout";
 import PopUser from "../../popuser/PopUser";
-import * as S from './header.styled'
+import * as S from "./header.styled";
+import { Container } from "../../../styled/common";
+import { useState } from "react";
 
 export default function Header({ addCard }) {
+  const [isOpenNewTaskModal, setIsOpenNewTaskModal] = useState(false);
+  const handleOpenModal = () => {
+    setIsOpenNewTaskModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpenNewTaskModal(false);
+  };
+
   return (
     <S.Header>
-      <CreateTaskModal />
       <Logout />
-
-      <div class="container">
+      <CreateTaskModal
+        isOpenNewTaskModal={isOpenNewTaskModal}
+        setIsOpenNewTaskModal={setIsOpenNewTaskModal}
+        addCard={addCard}
+        handleCloseModal={handleCloseModal}
+      />
+      <Container>
         <S.HeaderBlock>
           <div class="header__logo _show _light">
             <a href="" target="_self">
@@ -23,7 +38,7 @@ export default function Header({ addCard }) {
           </div>
           <S.HeaderNav>
             <S.CreateTaskBtn
-              onClick={addCard}
+              onClick={handleOpenModal}
               class="header__btn-main-new _hover01"
               id="btnMainNew"
             >
@@ -32,7 +47,7 @@ export default function Header({ addCard }) {
             <PopUser />
           </S.HeaderNav>
         </S.HeaderBlock>
-      </div>
+      </Container>
     </S.Header>
   );
 }
