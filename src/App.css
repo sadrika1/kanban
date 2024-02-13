@@ -1,10 +1,5 @@
 
 
-
-.pop-new-card__close:hover {
-  color: #000000;
-}
-
 .calendar__p {
   color: #94a6be;
   font-size: 10px;
@@ -65,8 +60,6 @@
   cursor: pointer;
 }
 
-
-
 .calendar__period {
   padding: 0 7px;
 }
@@ -95,14 +88,10 @@
 }
 
 
-.pop-browse__content .categories__theme {
-  opacity: 1;
-}
-
-.pop-browse__content .theme-down {
+/* .pop-browse__content .theme-down {
   display: none;
   margin-bottom: 20px;
-}
+} */
 
 .pop-browse__content .theme-top {
   display: block;

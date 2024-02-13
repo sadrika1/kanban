@@ -19,11 +19,10 @@ const statusList = [
 function App({
   isOpenNewTaskModal,
   setIsOpenNewTaskModal,
-  isOpenEditTaskModal,
-  setIsOpenEditTaskModal,
 }) {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
+  const [isOpenEditTaskModal, setIsOpenEditTaskModal] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -62,9 +61,13 @@ function App({
                       title={status}
                       key={status}
                       cardList={cards.filter((card) => card.status === status)}
+                      setIsOpenEditTaskModal={setIsOpenEditTaskModal}
                     />
                   ))}
-                  <TaskBrowse/>
+                  <TaskBrowse
+                    isOpenEditTaskModal={isOpenEditTaskModal}
+                    setIsOpenEditTaskModal={setIsOpenEditTaskModal}
+                  />
                 </S.MainContent>
               </S.MainBlock>
             </Container>
