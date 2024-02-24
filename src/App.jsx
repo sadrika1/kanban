@@ -1,81 +1,30 @@
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/home/HomePage";
+import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/register/RegisterPage";
+import NotFoundPage from "./pages/notfound/NotFoundPage";
+import { useState } from "react";
+import ProtectedRoute from "./protectedRoute";
+import TaskPage from "./pages/taskitem/TaskPage";
+import { appRoutes } from "./appRoutes";
 import "./App.css";
-import * as S from "./app.styled";
-import Header from "./components/header/headercomponent/Header";
-import Columns from "./components/columns/Columns";
-import TaskBrowse from "./components/taskbrowse/TaskBrowse";
-import { cardList } from "./data";
-import { useEffect, useState } from "react";
-import { Container } from "./styled/common";
-import { GlobalStyle } from "./styled/globalstyles";
+import LogoutPage from "./pages/logout/LogoutPage";
+import CreateTaskModal from "./components/header/taskmodal/CreateTaskModal";
 
-const statusList = [
-  "Без статуса",
-  "Нужно сделать",
-  "В работе",
-  "Тестирование",
-  "Готово",
-];
-
-function App({
-  isOpenNewTaskModal,
-  setIsOpenNewTaskModal,
-}) {
-  const [cards, setCards] = useState(cardList);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isOpenEditTaskModal, setIsOpenEditTaskModal] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
-  function addCard() {
-    const newCard = {
-      id: cards.lenght + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  }
+export default function App() {
+  const [isAuth, setIsAuth] = useState(true);
   return (
-    <>
-      <GlobalStyle />
-      <S.Wrapper>
-        <Header
-          addCard={addCard}
-          isOpenNewTaskModal={isOpenNewTaskModal}
-          setIsOpenNewTaskModal={setIsOpenNewTaskModal}
-        />
-        {isLoading ? (
-          "Данные загружаются..."
-        ) : (
-          <S.Main>
-            <Container>
-              <S.MainBlock>
-                <S.MainContent>
-                  {statusList.map((status) => (
-                    <Columns
-                      title={status}
-                      key={status}
-                      cardList={cards.filter((card) => card.status === status)}
-                      setIsOpenEditTaskModal={setIsOpenEditTaskModal}
-                    />
-                  ))}
-                  <TaskBrowse
-                    isOpenEditTaskModal={isOpenEditTaskModal}
-                    setIsOpenEditTaskModal={setIsOpenEditTaskModal}
-                  />
-                </S.MainContent>
-              </S.MainBlock>
-            </Container>
-          </S.Main>
-        )}
-      </S.Wrapper>
-    </>
+    <Routes>
+      <Route element={<ProtectedRoute isAuth={isAuth} />}>
+        <Route path={appRoutes.HOME} element={<HomePage />}>
+          <Route path={appRoutes.TASK} element={<TaskPage />} />
+          <Route path={appRoutes.LOGOUT} element={<LogoutPage />} />
+          <Route path={appRoutes.NEWTASK} element={<CreateTaskModal />}/>
+        </Route>
+      </Route>
+      <Route path={appRoutes.LOGIN} element={<LoginPage />} />
+      <Route path={appRoutes.REGISTER} element={<RegisterPage />} />
+      <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />} />
+    </Routes>
   );
 }
-
-export default App;

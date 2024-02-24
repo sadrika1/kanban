@@ -1,7 +1,7 @@
 import TaskItem from "../taskitem/TaskItem";
 import * as S from "./Columns.styled";
 
-export default function Columns({ title, cardList, setIsOpenEditTaskModal }) {
+export default function Columns({ title, cardList}) {
   return (
     <>
       <S.MainColumn>
@@ -13,7 +13,7 @@ export default function Columns({ title, cardList, setIsOpenEditTaskModal }) {
             title={card.title} 
             date={card.date}
             key={card.id}
-            setIsOpenEditTaskModal={setIsOpenEditTaskModal}
+            id={card.id}
              />
           ))}
         </S.CardsBlock>

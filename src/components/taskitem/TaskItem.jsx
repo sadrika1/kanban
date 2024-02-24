@@ -2,12 +2,13 @@ import { useState } from "react";
 import { TopicTitleColor, topicStyles } from "../../styled/topic";
 import CalendarSVG from "../../utils/svg/CalendarSVG";
 import * as S from "./taskitem.styled";
+import { Link } from "react-router-dom";
 
 export default function TaskItem({
   theme,
   title,
   date,
-  setIsOpenEditTaskModal,
+  id
 }) {
   // const handleOpeneEditModal = () => {
   //   setIsOpenEditTaskModal(true);
@@ -23,14 +24,14 @@ export default function TaskItem({
           <S.CardTheme $topicColor={TopicTitleColor[theme]}>
             <S.TopicText>{theme}</S.TopicText>
           </S.CardTheme>
-          <S.EditCardButton onClick={() => setIsOpenEditTaskModal(true)}>
+          <S.EditCardButton>
             <S.CircleBtn />
             <S.CircleBtn />
             <S.CircleBtn />
           </S.EditCardButton>
         </S.CardGroup>
         <S.CardContent>
-          <S.CardTitle>{title}</S.CardTitle>
+          <Link to={`task/${id}`}><S.CardTitle>{title}</S.CardTitle></Link>
           <S.CardDateBlock>
             <CalendarSVG />
             <S.CardDateText>{date}</S.CardDateText>

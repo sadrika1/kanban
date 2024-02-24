@@ -1,48 +1,34 @@
 import CreateTaskModal from "../taskmodal/CreateTaskModal";
-import Logout from "../logout/Logout";
 import PopUser from "../../popuser/PopUser";
 import * as S from "./header.styled";
 import { Container } from "../../../styled/common";
-import { useState } from "react";
+import LogoutPage from "../../../pages/logout/LogoutPage";
+import { Link, Outlet } from "react-router-dom";
+import { appRoutes } from "../../../appRoutes";
 
 export default function Header({ addCard }) {
-  const [isOpenNewTaskModal, setIsOpenNewTaskModal] = useState(false);
-  const handleOpenModal = () => {
-    setIsOpenNewTaskModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsOpenNewTaskModal(false);
-  };
-
   return (
     <S.Header>
-      <Logout />
-      <CreateTaskModal
-        isOpenNewTaskModal={isOpenNewTaskModal}
-        setIsOpenNewTaskModal={setIsOpenNewTaskModal}
-        addCard={addCard}
-        handleCloseModal={handleCloseModal}
-      />
+      <Outlet />
+      {/* <CreateTaskModal addCard={addCard}></CreateTaskModal> */}
       <Container>
         <S.HeaderBlock>
-          <div class="header__logo _show _light">
+          <div className="header__logo _show _light">
             <a href="" target="_self">
               <img src="/public/logo.png" alt="logo" />
             </a>
           </div>
-          <div class="header__logo _dark">
+          <div className="header__logo _dark">
             <a href="" target="_self">
               <img src="/public/logo_dark.png" alt="logo" />
             </a>
           </div>
           <S.HeaderNav>
             <S.CreateTaskBtn
-              onClick={handleOpenModal}
-              class="header__btn-main-new _hover01"
+              className="header__btn-main-new _hover01"
               id="btnMainNew"
             >
-              Создать новую задачу
+              <Link to={appRoutes.NEWTASK}>Создать новую задачу</Link>
             </S.CreateTaskBtn>
             <PopUser />
           </S.HeaderNav>

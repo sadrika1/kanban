@@ -1,5 +1,7 @@
 import { useState } from "react";
 import * as S from "./Popuser.styled";
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../appRoutes";
 
 export default function PopUser() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +20,7 @@ export default function PopUser() {
             <S.ThemeCheckbox type="checkbox"name="checkbox" />
           </S.PopUserTheme>
           <S.PopExitBtn type="button" className="_hover03">
-            <a href="#popExit">Выйти</a>
+            <Link to={appRoutes.LOGOUT}>Выйти</Link>
           </S.PopExitBtn>
         </S.HeaderPopUserSet>
       )}
