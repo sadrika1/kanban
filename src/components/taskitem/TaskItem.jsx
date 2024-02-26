@@ -1,34 +1,43 @@
+import { useState } from "react";
+import { TopicTitleColor, topicStyles } from "../../styled/topic";
 import CalendarSVG from "../../utils/svg/CalendarSVG";
+import * as S from "./taskitem.styled";
+import { Link } from "react-router-dom";
 
-export default function TaskItem() {
-  return (    
-    <div class="cards__item">
-      <div class="cards__card card">
-        <div class="card__group">
-          {/* <div className={`card__theme ${styles[themeClass]}`}>
-            <p className={props.textClass}>{props.taskName}</p>
-          </div> */}
-          <div class="card__theme  _orange">
-            <p class="_orange">Web Design</p>
-          </div>
-          <a href="#popBrowse" target="_self">
-            <div class="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </a>
-        </div>
-        <div class="card__content">
-          <a href="" target="_blank">
-            <h3 class="card__title">Название задачи</h3>
-          </a>
-          <div class="card__date">
-          <CalendarSVG />
-            <p>30.10.23</p>
-          </div>
-        </div>
-      </div>
-    </div>
+export default function TaskItem({
+  theme,
+  title,
+  date,
+  id
+}) {
+  // const handleOpeneEditModal = () => {
+  //   setIsOpenEditTaskModal(true);
+  // };
+
+  // const handleCloseEditModal = () => {
+  //   setIsOpenEditTaskModal(false);
+  // };
+  return (
+    <S.CardsItem>
+      <S.CardsCard>
+        <S.CardGroup>
+          <S.CardTheme $topicColor={TopicTitleColor[theme]}>
+            <S.TopicText>{theme}</S.TopicText>
+          </S.CardTheme>
+          <S.EditCardButton>
+            <S.CircleBtn />
+            <S.CircleBtn />
+            <S.CircleBtn />
+          </S.EditCardButton>
+        </S.CardGroup>
+        <S.CardContent>
+          <Link to={`task/${id}`}><S.CardTitle>{title}</S.CardTitle></Link>
+          <S.CardDateBlock>
+            <CalendarSVG />
+            <S.CardDateText>{date}</S.CardDateText>
+          </S.CardDateBlock>
+        </S.CardContent>
+      </S.CardsCard>
+    </S.CardsItem>
   );
 }

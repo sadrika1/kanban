@@ -1,63 +1,68 @@
 import Calendar from "../../utils/Calendar";
+import * as S from "./TaskBrowse.styled";
+import {
+  CategoriesName,
+  CategoriesTheme,
+  CategoriesTitle,
+} from "../header/taskmodal/CreateTaskModal.styled";
+import { Link, useParams } from "react-router-dom";
+import { appRoutes } from "../../appRoutes";
 
 export default function TaskBrowse() {
+const {id} = useParams()
+
   return (
-    <div class="pop-browse" id="popBrowse">
-      <div class="pop-browse__container">
-        <div class="pop-browse__block">
-          <div class="pop-browse__content">
-            <div class="pop-browse__top-block">
-              <h3 class="pop-browse__ttl">Название задачи</h3>
-              <div class="categories__theme theme-top _orange _active-category">
-                <p class="_orange">Web Design</p>
+    <S.PopBrowse id="popBrowse">
+      <S.PopBrowseContainer>
+        <S.PopBrowseBlock>
+          <S.PopBrowseContent>
+            <S.PopBrowseTop>
+              <S.PopBrowseTitle>Название задачи: {id}</S.PopBrowseTitle>
+              <div className="categories__theme theme-top _orange _active-category">
+                <p className="_orange">Web Design</p>
               </div>
-            </div>
-            <div class="pop-browse__status status">
-              <p class="status__p subttl">Статус</p>
-              <div class="status__themes">
-                <div class="status__theme _hide">
+            </S.PopBrowseTop>
+            <div className="pop-browse__status status">
+              <p className="status__p subttl">Статус</p>
+              <div className="status__themes">
+                <div className="status__theme _hide">
                   <p>Без статуса</p>
                 </div>
-                <div class="status__theme _gray">
-                  <p class="_gray">Нужно сделать</p>
+                <div className="status__theme _gray">
+                  <p className="_gray">Нужно сделать</p>
                 </div>
-                <div class="status__theme _hide">
+                <div className="status__theme _hide">
                   <p>В работе</p>
                 </div>
-                <div class="status__theme _hide">
+                <div className="status__theme _hide">
                   <p>Тестирование</p>
                 </div>
-                <div class="status__theme _hide">
+                <div className="status__theme _hide">
                   <p>Готово</p>
                 </div>
               </div>
             </div>
-            <div class="pop-browse__wrap">
-              <form
-                class="pop-browse__form form-browse"
-                id="formBrowseCard"
-                action="#"
-              >
-                <div class="form-browse__block">
-                  <label for="textArea01" class="subttl">
+            <S.PopBrowseWrap>
+              <S.FormBrowse id="formBrowseCard" action="#">
+                <S.FormBrowseBlock>
+                  <label for="textArea01" className="subttl">
                     Описание задачи
                   </label>
-                  <textarea
-                    class="form-browse__area"
+                  <S.FormBrowseArea
                     name="text"
                     id="textArea01"
                     readonly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
-              <div class="pop-new-card__calendar calendar">
-                <p class="calendar__ttl subttl">Даты</p>
-                <div class="calendar__block">
-                  <div class="calendar__nav">
-                    <div class="calendar__month">Сентябрь 2023</div>
-                    <div class="nav__actions">
-                      <div class="nav__action" data-action="prev">
+                  ></S.FormBrowseArea>
+                </S.FormBrowseBlock>
+              </S.FormBrowse>
+              <div className="pop-new-card__calendar calendar">
+                <p className="calendar__ttl subttl">Даты</p>
+                <div className="calendar__block">
+                  <div className="calendar__nav">
+                    <div className="calendar__month">Сентябрь 2023</div>
+                    <div className="nav__actions">
+                      <div className="nav__action" data-action="prev">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="6"
@@ -67,7 +72,7 @@ export default function TaskBrowse() {
                           <path d="M5.72945 1.95273C6.09018 1.62041 6.09018 1.0833 5.72945 0.750969C5.36622 0.416344 4.7754 0.416344 4.41218 0.750969L0.528487 4.32883C-0.176162 4.97799 -0.176162 6.02201 0.528487 6.67117L4.41217 10.249C4.7754 10.5837 5.36622 10.5837 5.72945 10.249C6.09018 9.9167 6.09018 9.37959 5.72945 9.04727L1.87897 5.5L5.72945 1.95273Z" />
                         </svg>
                       </div>
-                      <div class="nav__action" data-action="next">
+                      <div className="nav__action" data-action="next">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="6"
@@ -79,59 +84,59 @@ export default function TaskBrowse() {
                       </div>
                     </div>
                   </div>
-                 <Calendar />
+                  <Calendar />
 
                   <input type="hidden" id="datepick_value" value="08.09.2023" />
-                  <div class="calendar__period">
-                    <p class="calendar__p date-end">
+                  <div className="calendar__period">
+                    <p className="calendar__p date-end">
                       Срок исполнения:{" "}
-                      <span class="date-control">09.09.23</span>
+                      <span className="date-control">09.09.23</span>
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="theme-down__categories theme-down">
-              <p class="categories__p subttl">Категория</p>
-              <div class="categories__theme _orange _active-category">
-                <p class="_orange">Web Design</p>
-              </div>
-            </div>
-            <div class="pop-browse__btn-browse ">
-              <div class="btn-group">
-                <button class="btn-browse__edit _btn-bor _hover03">
+            </S.PopBrowseWrap>
+            <CategoriesTitle>
+              <>Категория</>
+              <CategoriesTheme>
+                <CategoriesName>Web Design</CategoriesName>
+              </CategoriesTheme>
+            </CategoriesTitle>
+            <div className="pop-browse__btn-browse ">
+              <div className="btn-group">
+                <button className="btn-browse__edit _btn-bor _hover03">
                   <a href="#">Редактировать задачу</a>
                 </button>
-                <button class="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
+                <button className="btn-browse__delete _btn-bor _hover03">
+                  Удалить задачу
                 </button>
               </div>
-              <button class="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+              <button className="btn-browse__close _btn-bg _hover01">
+              <Link to={appRoutes.HOME}>Закрыть</Link>
               </button>
             </div>
-            <div class="pop-browse__btn-edit _hide">
-              <div class="btn-group">
-                <button class="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
+            <div className="pop-browse__btn-edit _hide">
+              <div className="btn-group">
+                <button className="btn-edit__edit _btn-bg _hover01">
+                  Сохранить
                 </button>
-                <button class="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
+                <button className="btn-edit__edit _btn-bor _hover03">
+                  Отменить
                 </button>
                 <button
-                  class="btn-edit__delete _btn-bor _hover03"
+                  className="btn-edit__delete _btn-bor _hover03"
                   id="btnDelete"
                 >
-                  <a href="#">Удалить задачу</a>
+                  Удалить задачу
                 </button>
               </div>
-              <button class="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
+              <span className="btn-edit__close _btn-bg _hover01">
+                <Link to={appRoutes.HOME}>Закрыть</Link>
+              </span>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </S.PopBrowseContent>
+        </S.PopBrowseBlock>
+      </S.PopBrowseContainer>
+    </S.PopBrowse>
   );
 }
