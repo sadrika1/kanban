@@ -11,6 +11,7 @@ import "./App.css";
 import LogoutPage from "./pages/logout/LogoutPage";
 import CreateTaskModal from "./components/header/taskmodal/CreateTaskModal";
 import RegisterPage from "./pages/register/RegisterPage";
+import EditTaskBrowse from "./components/taskbrowse/EditTaskBrowse";
 
 export default function App() {
   const [user, setIsUser] = useState(null);
@@ -28,6 +29,7 @@ export default function App() {
       <Route element={<ProtectedRoute user={user} />}>
         <Route path={appRoutes.HOME} element={<HomePage user={user} />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
+          <Route path={'/task/:id/edit'} element={<EditTaskBrowse />}/>
           <Route
             path={appRoutes.LOGOUT}
             element={<LogoutPage logout={logout} />}

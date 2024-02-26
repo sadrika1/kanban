@@ -41,6 +41,7 @@ export default function HomePage({ user }) {
       .then((tasks) => {
         setCards(tasks.tasks);
         setIsLoading(false);
+        console.log(tasks);
       })
       .catch((error) => {});
   }, [user]);
