@@ -10,12 +10,17 @@ export default function LogoutPage() {
           <S.PopExitTitle>Выйти из аккаунта?</S.PopExitTitle>
           <form id="formExit" action="#">
             <S.PopExitForm>
-              <S.ButtonExitYes className=" _hover01" id="exitYes">
-                <Link to={appRoutes.LOGIN}>Да, выйти</Link>
-              </S.ButtonExitYes>
-              <S.ButtonExitNo className=" _hover03" id="exitNo">
-                <Link to={appRoutes.HOME}>Нет, остаться</Link>
-              </S.ButtonExitNo>
+              <Link to={appRoutes.LOGIN}>
+                <S.ButtonExitYes className=" _hover01" id="exitYes">
+                  Да, выйти
+                </S.ButtonExitYes>
+              </Link>
+
+              <Link to={appRoutes.HOME}>
+                <S.ButtonExitNo className=" _hover03" id="exitNo">
+                  Нет, остаться
+                </S.ButtonExitNo>
+              </Link>
             </S.PopExitForm>
           </form>
         </S.PopExitBlock>

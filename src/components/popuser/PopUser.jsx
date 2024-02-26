@@ -17,11 +17,14 @@ export default function PopUser() {
           <S.PopUserMail>ivan.ivanov@gmail.com</S.PopUserMail>
           <S.PopUserTheme>
             <p>Темная тема</p>
-            <S.ThemeCheckbox type="checkbox"name="checkbox" />
+            <S.ThemeCheckbox type="checkbox" name="checkbox" />
           </S.PopUserTheme>
-          <S.PopExitBtn type="button" className="_hover03">
-            <Link to={appRoutes.LOGOUT}>Выйти</Link>
-          </S.PopExitBtn>
+
+          <Link to={appRoutes.LOGOUT}>
+            <S.PopExitBtn>
+              Выйти
+            </S.PopExitBtn>
+          </Link>
         </S.HeaderPopUserSet>
       )}
     </>

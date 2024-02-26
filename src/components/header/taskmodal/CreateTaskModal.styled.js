@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { topicStyles } from "../../../styled/topic";
+import { Hovers } from "../../../styled/hover";
 
 export const PopNewCard = styled.div`
   display: block;
@@ -151,6 +152,8 @@ export const CreateNewCardButton = styled.button`
   line-height: 1;
   color: #ffffff;
   float: right;
+
+  ${Hovers.hover03}
 `;
 
 export const PopNewCardClose = styled.button`
@@ -163,6 +166,10 @@ export const PopNewCardClose = styled.button`
   width: 20px;
   background-color: transparent;
   border: 1px solid gray;
+
+  &:hover { 
+    background-color: #c7c5c1;
+  }
 `;
 
 export const CategoriesTitle = styled.div`

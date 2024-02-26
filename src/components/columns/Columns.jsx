@@ -7,13 +7,13 @@ export default function Columns({ title, cardList}) {
       <S.MainColumn>
         <S.ColumnTitle>{title}</S.ColumnTitle>
         <S.CardsBlock>
-          {cardList.map((card) => (
+          {cardList.map((task) => (
             <TaskItem 
-            theme={card.theme} 
-            title={card.title} 
-            date={card.date}
-            key={card.id}
-            id={card.id}
+            theme={task.topic} 
+            title={task.title} 
+            date={task.date}
+            key={task._id}
+            id={task._id}
              />
           ))}
         </S.CardsBlock>

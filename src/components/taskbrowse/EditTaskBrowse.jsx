@@ -9,7 +9,7 @@ import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../appRoutes";
 import { useEffect, useState } from "react";
 
-export default function TaskBrowse() {
+export default function EditTaskBrowse() {
   const { id } = useParams();
 
   // useEffect(() => {
@@ -26,35 +26,39 @@ export default function TaskBrowse() {
             <S.PopBrowseTop>
               <S.PopBrowseTitle>Название задачи: {id}</S.PopBrowseTitle>
               <div className="categories__theme theme-top _orange _active-category">
-                <p></p>
+                <p>Текущий топик</p>
               </div>
             </S.PopBrowseTop>
-            <S.StatuseTitle>Статус</S.StatuseTitle>
-            <S.StatusThemesBlock>
-              <S.ActiveStatus>Без статуса</S.ActiveStatus>
-            </S.StatusThemesBlock>
-
+            <S.PopBrowseStatus>
+              <S.StatuseTitle>Статус</S.StatuseTitle>
+              <S.StatusThemesBlock>
+                <S.ThemeStatus>Без статуса</S.ThemeStatus>
+                <S.ThemeStatus>Нужно сделать</S.ThemeStatus>
+                <S.ThemeStatus>В работе</S.ThemeStatus>
+                <S.ThemeStatus>Тестирование</S.ThemeStatus>
+                <S.ThemeStatus>Готово</S.ThemeStatus>
+              </S.StatusThemesBlock>
+            </S.PopBrowseStatus>
             <S.PopBrowseWrap>
               <S.FormBrowse id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
-                  Описание задачи
+                  <label forHtml="textArea01">Описание задачи</label>
                   <S.FormBrowseArea
                     name="text"
                     id="textArea01"
-                    readOnly
-                    placeholder="Подробное описание задачи"
+                    placeholder="Введите описание задачи"
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.FormBrowse>
 
               <Calendar />
             </S.PopBrowseWrap>
+
             <S.PopBrowseButtons>
               <div>
-                <Link to={`/task/${id}/edit`}>
-                  <S.BtnBrowseBor>Редактировать задачу</S.BtnBrowseBor>
-                </Link>
-                <S.BtnBrowseBor>Удалить задачу</S.BtnBrowseBor>
+                <S.BtnBrowseBg>Сохранить</S.BtnBrowseBg>
+                <S.BtnBrowseBor>Отменить</S.BtnBrowseBor>
+                <S.BtnBrowseBor id="btnDelete">Удалить задачу</S.BtnBrowseBor>
               </div>
               <Link to={appRoutes.HOME}>
                 <S.BtnBrowseBg>Закрыть</S.BtnBrowseBg>

@@ -1,14 +1,15 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
 
 export const WrapperLogin = styled.div`
-  width: 100vw;
-  max-height: 100vh;
+  width: 100%;
+  max-height: 100%;
   background-color: #eaeef6;
 `;
 
 export const ContainerLogin = styled.div`
   display: block;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
 `;
@@ -85,6 +86,7 @@ export const LoginButton = styled.button`
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #ffffff;
+  ${Hovers.hover01}
 `;
 
 export const RegisterRedirect = styled.div`
@@ -99,5 +101,15 @@ export const RegisterRedirect = styled.div`
   letter-spacing: -0.14px;
   & a {
     color: rgba(148, 166, 190, 0.4);
+    text-decoration: underline;
   }
+`;
+
+export const Error = styled.div`
+  color: coral;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin-top: 20px;
+  text-align: left;
 `;
