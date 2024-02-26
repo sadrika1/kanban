@@ -10,13 +10,6 @@ export default function TaskItem({
   date,
   id
 }) {
-  // const handleOpeneEditModal = () => {
-  //   setIsOpenEditTaskModal(true);
-  // };
-
-  // const handleCloseEditModal = () => {
-  //   setIsOpenEditTaskModal(false);
-  // };
   return (
     <S.CardsItem>
       <S.CardsCard>

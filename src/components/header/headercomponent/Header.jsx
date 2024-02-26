@@ -25,6 +25,7 @@ export default function Header({ addCard }) {
           </div>
           <S.HeaderNav>
             <S.CreateTaskBtn
+              addCard={addCard}
               className="header__btn-main-new _hover01"
               id="btnMainNew"
             >

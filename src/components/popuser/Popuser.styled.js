@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
 
 export const HeaderUserBtn = styled.button`
   height: 20px;
@@ -106,4 +107,9 @@ export const PopExitBtn = styled.button`
   color: #565eef;
   border-radius: 4px;
   border: 1px solid #565eef;
+ 
+  &:hover {
+    background-color: #565eef;
+    color: #ffffff;
+  }
 `;
