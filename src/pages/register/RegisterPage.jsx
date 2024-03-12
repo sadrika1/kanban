@@ -3,8 +3,10 @@ import * as S from "../login/loginPage.styled";
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../appRoutes";
 import { fetchReg } from "../../API";
+import { useUserContext } from "../../contexts/usercontext";
 
 export default function RegisterPage() {
+  const { login } = useUserContext();
   const [registerData, setRegisterData] = useState({
     login: "",
     password: "",
@@ -25,17 +27,13 @@ export default function RegisterPage() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (
-      !registerData.login ||
-      !registerData.password ||
-      !registerData.name
-    ) {
+    if (!registerData.login || !registerData.password || !registerData.name) {
       setError("Заполните обязательные поля");
       return;
     }
     try {
       await fetchReg(registerData).then((data) => {
-        // login(data.user);
+        login(data.user);
         console.log("Correct!", data);
       });
       navigate(appRoutes.HOME);

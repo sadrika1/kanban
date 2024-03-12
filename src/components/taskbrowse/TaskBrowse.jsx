@@ -1,13 +1,7 @@
 import Calendar from "../../utils/Calendar";
 import * as S from "./TaskBrowse.styled";
-import {
-  CategoriesName,
-  CategoriesTheme,
-  CategoriesTitle,
-} from "../header/taskmodal/CreateTaskModal.styled";
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../appRoutes";
-import { useEffect, useState } from "react";
 
 export default function TaskBrowse() {
   const { id } = useParams();
@@ -26,7 +20,7 @@ export default function TaskBrowse() {
             <S.PopBrowseTop>
               <S.PopBrowseTitle>Название задачи: {id}</S.PopBrowseTitle>
               <div className="categories__theme theme-top _orange _active-category">
-                <p></p>
+                <p>Текущий топик сюда</p>
               </div>
             </S.PopBrowseTop>
             <S.StatuseTitle>Статус</S.StatuseTitle>

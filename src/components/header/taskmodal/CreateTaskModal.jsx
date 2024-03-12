@@ -2,9 +2,42 @@ import { Link } from "react-router-dom";
 import Calendar from "../../../utils/Calendar";
 import * as S from "./CreateTaskModal.styled";
 import { appRoutes } from "../../../appRoutes";
-import { TopicTitleColor } from "../../../styled/topic";
+import { useState } from "react";
+import { fetchAddTask } from "../../../API";
+import { useUserContext } from "../../../contexts/usercontext";
 
-export default function CreateTaskModal({ addCard, theme }) {
+export default function CreateTaskModal() {
+  const {user} = useUserContext()
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+    topic: "",
+    date: "",
+  });
+  const [selectedDate, setSelectedDate] = useState();
+  const handleTaskSubmit = async (e) => {
+    e.preventDefault();
+    const taskData = {
+      ...newTask,
+      date: selectedDate,
+    };
+    await fetchAddTask({
+      task: taskData,
+      token: user.token,
+    })
+    console.log(taskData);
+  };
+
+  // const [checked, setChecked] = useState('');
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // setChecked(e.target.value);
+    setNewTask({
+      ...newTask, // Копируем текущие данные из состояния
+      [name]: value, // Обновляем нужное поле
+    });
+  };
+
   return (
     <>
       <S.PopNewCard id="popNewCard">
@@ -23,8 +56,10 @@ export default function CreateTaskModal({ addCard, theme }) {
                     </S.LabelFormSubtitle>
                     <S.CardFromNewInput
                       type="text"
-                      name="name"
                       id="formTitle"
+                      name="title"
+                      onChange={handleInputChange}
+                      value={newTask.title}
                       placeholder="Введите название задачи..."
                       autoFocus
                     />
@@ -35,7 +70,9 @@ export default function CreateTaskModal({ addCard, theme }) {
                     </S.LabelFormSubtitle>
                     <S.CardFromNewArea
                       as="textarea"
-                      name="text"
+                      name="description"
+                      onChange={handleInputChange}
+                      value={newTask.description}
                       id="textArea"
                       placeholder="Введите описание задачи..."
                     ></S.CardFromNewArea>
@@ -43,49 +80,64 @@ export default function CreateTaskModal({ addCard, theme }) {
                 </S.PopNewCardForm>
                 <S.Calendar>
                   <S.CalendarTitle>Даты</S.CalendarTitle>
-                  <div className="calendar__block">
-   
-                    <Calendar />
-
-                    <input
-                      type="hidden"
-                      id="datepick_value"
-                      value="08.09.2023"
-                    />
-                    <div className="calendar__period">
-                      <p className="calendar__p date-end">
-                  
-                        <span className="date-control"></span>
-                      </p>
-                    </div>
-                  </div>
+                  <Calendar
+                    selectedDate={selectedDate}
+                    setSelectedDate={setSelectedDate}
+                  />
                 </S.Calendar>
               </S.PopNewCardWrap>
-              <div>
-                <S.CategoriesTitle>Категория</S.CategoriesTitle>
-                <S.CategoriesThemeBlock>
-                  <S.CategoriesTheme>
-                    <S.CategoriesName className="_orange">
-                      Web Design
-                    </S.CategoriesName>
-                  </S.CategoriesTheme>
-                  <S.CategoriesTheme>
-                    <S.CategoriesName className="_green">
-                      Research
-                    </S.CategoriesName>
-                  </S.CategoriesTheme>
-                  <S.CategoriesTheme>
-                    <S.CategoriesName className="_purple">
-                      Copywriting
-                    </S.CategoriesName>
-                  </S.CategoriesTheme>
-                </S.CategoriesThemeBlock>
-              </div>
-              <S.CreateNewCardButton
-                onClick={addCard}
-                className="_hover01"
-                id="btnCreate"
-              >
+              <S.CategoriesTitle>Категория</S.CategoriesTitle>
+              <S.CategoriesThemeBlock>
+                <S.RadioInput
+                  type="radio"
+                  id="radio1"
+                  name="topic"
+                  topic="Web Design"
+                  value="Web Design"
+                  onChange={handleInputChange}
+                />
+                <S.RadioLabel
+                  htmlFor="radio1"
+                  backgroundColor="#ffe4c2"
+                  color="#ff6d00"
+                
+                >
+                  Web Design
+                </S.RadioLabel>
+
+                <S.RadioInput
+                  type="radio"
+                  id="radio2"
+                  name="topic"
+                  value="Research"
+                  onChange={handleInputChange}
+                />
+                <S.RadioLabel
+                  htmlFor="radio2"
+                  backgroundColor="#b4fdd1"
+                  color="#06b16e"
+                
+                >
+                  Research
+                </S.RadioLabel>
+
+                <S.RadioInput
+                  type="radio"
+                  id="radio3"
+                  name="topic"
+                  value="Copywriting"
+                  onChange={handleInputChange}
+                />
+                <S.RadioLabel
+                  htmlFor="radio3"
+                  backgroundColor="#e9d4ff"
+                  color="#9a48f1"
+                >
+                  Copywriting
+                </S.RadioLabel>
+              </S.CategoriesThemeBlock>
+
+              <S.CreateNewCardButton onClick={handleTaskSubmit}>
                 Создать задачу
               </S.CreateNewCardButton>
             </S.PopNewCardContent>

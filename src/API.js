@@ -3,16 +3,16 @@ const baseHost = "https://wedev-api.sky.pro/api/kanban";
 const userHost = "https://wedev-api.sky.pro/api/user";
 
 export async function getTasks({ token }) {
-  const responce = await fetch(baseHost, {
+  const response = await fetch(baseHost, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
-  if (!responce.status === 200) {
+  if (!response.status === 200) {
     throw new Error("Ошибка");
   }
-  const data = await responce.json();
+  const data = await response.json();
   return data;
 }
 
@@ -41,6 +41,36 @@ export async function fetchLogin({ login, password }) {
   });
   if (response.status === 403) {
     throw new Error("Неверный логин или пароль");
+  }
+  return await response.json();
+}
+
+export async function fetchAddTask({ task, token }) {
+  const response = await fetch(baseHost, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      task,
+      token,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error("Ошибка добавления задачи");
+  }
+  return await response.json();
+}
+
+export async function fetchDeleteTask({ _id }) {
+  const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${_id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Ошибка удаления задачи");
   }
   return await response.json();
 }

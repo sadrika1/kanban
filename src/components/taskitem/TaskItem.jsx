@@ -1,15 +1,9 @@
-import { useState } from "react";
 import { TopicTitleColor, topicStyles } from "../../styled/topic";
 import CalendarSVG from "../../utils/svg/CalendarSVG";
 import * as S from "./taskitem.styled";
 import { Link } from "react-router-dom";
 
-export default function TaskItem({
-  theme,
-  title,
-  date,
-  id
-}) {
+export default function TaskItem({ theme, title, date, id }) {
   return (
     <S.CardsItem>
       <S.CardsCard>
@@ -24,7 +18,9 @@ export default function TaskItem({
           </S.EditCardButton>
         </S.CardGroup>
         <S.CardContent>
-          <Link to={`task/${id}`}><S.CardTitle>{title}</S.CardTitle></Link>
+          <Link to={`task/${id}`}>
+            <S.CardTitle>{title}</S.CardTitle>
+          </Link>
           <S.CardDateBlock>
             <CalendarSVG />
             <S.CardDateText>{date}</S.CardDateText>

@@ -42,7 +42,7 @@ export default function EditTaskBrowse() {
             <S.PopBrowseWrap>
               <S.FormBrowse id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
-                  <label forHtml="textArea01">Описание задачи</label>
+                  <label htmlFor="textArea01">Описание задачи</label>
                   <S.FormBrowseArea
                     name="text"
                     id="textArea01"
@@ -57,7 +57,9 @@ export default function EditTaskBrowse() {
             <S.PopBrowseButtons>
               <div>
                 <S.BtnBrowseBg>Сохранить</S.BtnBrowseBg>
-                <S.BtnBrowseBor>Отменить</S.BtnBrowseBor>
+                {/* <S.BtnBrowseBor>
+                  Отменить
+                  </S.BtnBrowseBor> */}
                 <S.BtnBrowseBor id="btnDelete">Удалить задачу</S.BtnBrowseBor>
               </div>
               <Link to={appRoutes.HOME}>

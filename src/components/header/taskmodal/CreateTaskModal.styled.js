@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { topicStyles } from "../../../styled/topic";
 import { Hovers } from "../../../styled/hover";
 
 export const PopNewCard = styled.div`
@@ -30,7 +29,7 @@ export const PopNewCardBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
-  max-width: 630px;
+  max-width: 730px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
@@ -54,7 +53,6 @@ export const PopNewCardTitle = styled.h3`
 export const PopNewCardWrap = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
 `;
 
 export const PopNewCardForm = styled.form`
@@ -167,7 +165,7 @@ export const PopNewCardClose = styled.button`
   background-color: transparent;
   border: 1px solid gray;
 
-  &:hover { 
+  &:hover {
     background-color: #c7c5c1;
   }
 `;
@@ -178,13 +176,12 @@ export const CategoriesTitle = styled.div`
 
 export const CategoriesThemeBlock = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 10px;
   width: auto;
   height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: 0.4;
 `;
 
 export const CategoriesTheme = styled.div`
@@ -198,4 +195,23 @@ export const CategoriesName = styled.p`
   font-weight: 600;
   line-height: 14px;
   white-space: nowrap;
+`;
+
+// checkboxs
+
+export const RadioLabel = styled.label`
+  display: inline-block;
+  padding: 5px 14px;
+  cursor: pointer;
+  border-radius: 24px;
+  font-size: 14px;
+  height: 30px;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ color }) => color};
+  opacity: ${({ checked }) => (checked ? 1 : 0.5)};
+  font-weight: ${({ checked }) => (checked ? "bold" : "normal")};
+`;
+
+export const RadioInput = styled.input`
+
 `;

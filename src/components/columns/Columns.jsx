@@ -9,6 +9,7 @@ export default function Columns({ title, cardList}) {
         <S.CardsBlock>
           {cardList.map((task) => (
             <TaskItem 
+            draggable={true}
             theme={task.topic} 
             title={task.title} 
             date={task.date}

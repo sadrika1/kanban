@@ -30,6 +30,7 @@ export const CardsCard = styled.div`
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
+ 
 `;
 
 export const CardGroup = styled.div`
@@ -39,6 +40,7 @@ export const CardGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 `;
 
 export const TopicText = styled.p`

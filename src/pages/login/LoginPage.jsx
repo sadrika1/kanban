@@ -3,8 +3,10 @@ import * as S from "./loginPage.styled";
 import { appRoutes } from "../../appRoutes";
 import { useEffect, useState } from "react";
 import { fetchLogin } from "../../API";
+import { useUserContext } from "../../contexts/usercontext";
 
-export default function LoginPage({ login }) {
+export default function LoginPage() {
+  const { login } = useUserContext();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const [error, setError] = useState(null);
   // const [isLoading, setIsLoading] = useState(false);
@@ -30,11 +32,10 @@ export default function LoginPage({ login }) {
       await fetchLogin(loginData).then((data) => {
         login(data.user);
       });
-
       navigate(appRoutes.HOME);
     } catch (error) {
       console.error("fall", error);
-      setError(error.message);
+      setError('Ошибка входа');
     }
   };
 

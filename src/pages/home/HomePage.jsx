@@ -6,6 +6,7 @@ import { Container } from "../../styled/common";
 import { Outlet } from "react-router-dom";
 import LoaderAnimation from "../../loader/loader";
 import { getTasks } from "../../API";
+import { useUserContext } from "../../contexts/usercontext";
 
 const statusList = [
   "Без статуса",
@@ -15,7 +16,8 @@ const statusList = [
   "Готово",
 ];
 
-export default function HomePage({ user }) {
+export default function HomePage() {
+  const {user} = useUserContext()
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,18 +26,6 @@ export default function HomePage({ user }) {
   //     setIsLoading(false);
   //   }, 3000);
   // }, []);
-
-  function addCard() {
-    const newCard = {
-      id: cards.lenght + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  }
-
   useEffect(() => {
     getTasks({ token: user.token })
       .then((tasks) => {
@@ -43,13 +33,15 @@ export default function HomePage({ user }) {
         setIsLoading(false);
         console.log(tasks);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        alert(error)
+      });
   }, [user]);
 
   return (
     <S.Wrapper>
       <Outlet />
-      <Header addCard={addCard} />
+      <Header />
       {isLoading ? (
         <LoaderAnimation />
       ) : (

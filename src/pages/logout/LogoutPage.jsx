@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./Logout.styled";
 import { appRoutes } from "../../appRoutes";
+import { useUserContext } from "../../contexts/usercontext";
 
 export default function LogoutPage() {
+  const { logout } = useUserContext();
+  const navigate = useNavigate();
   return (
     <S.PopExit className="pop-exit" id="popExit">
       <S.PopExitContainer>
@@ -11,15 +14,18 @@ export default function LogoutPage() {
           <form id="formExit" action="#">
             <S.PopExitForm>
               <Link to={appRoutes.LOGIN}>
-                <S.ButtonExitYes className=" _hover01" id="exitYes">
+                <S.ButtonExitYes
+                  onClick={() => {
+                    logout();
+                    navigate(appRoutes.LOGIN);
+                  }}
+                >
                   Да, выйти
                 </S.ButtonExitYes>
               </Link>
 
               <Link to={appRoutes.HOME}>
-                <S.ButtonExitNo className=" _hover03" id="exitNo">
-                  Нет, остаться
-                </S.ButtonExitNo>
+                <S.ButtonExitNo>Нет, остаться</S.ButtonExitNo>
               </Link>
             </S.PopExitForm>
           </form>
