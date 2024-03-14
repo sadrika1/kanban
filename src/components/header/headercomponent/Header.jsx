@@ -8,7 +8,6 @@ export default function Header() {
   return (
     <S.Header>
       <Outlet />
-      {/* <CreateTaskModal addCard={addCard}></CreateTaskModal> */}
       <Container>
         <S.HeaderBlock>
           <div className="header__logo _show _light">

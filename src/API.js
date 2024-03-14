@@ -51,10 +51,7 @@ export async function fetchAddTask({ task, token }) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      task,
-      token,
-    }),
+    body: JSON.stringify(task, token),
   });
   if (!response.ok) {
     throw new Error("Ошибка добавления задачи");
