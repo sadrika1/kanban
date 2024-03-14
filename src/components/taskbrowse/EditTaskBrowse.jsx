@@ -1,10 +1,5 @@
 import Calendar from "../../utils/Calendar";
 import * as S from "./TaskBrowse.styled";
-import {
-  CategoriesName,
-  CategoriesTheme,
-  CategoriesTitle,
-} from "../header/taskmodal/CreateTaskModal.styled";
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../appRoutes";
 import { useEffect, useState } from "react";

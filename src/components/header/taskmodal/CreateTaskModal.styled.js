@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Hovers } from "../../../styled/hover";
+import { topicStyles } from "../../../styled/topic";
 
 export const PopNewCard = styled.div`
   display: block;
@@ -154,7 +155,7 @@ export const CreateNewCardButton = styled.button`
   ${Hovers.hover03}
 `;
 
-export const PopNewCardClose = styled.button`
+export const PopNewCardClose = styled.span`
   position: absolute;
   top: 20px;
   right: 30px;
@@ -163,55 +164,45 @@ export const PopNewCardClose = styled.button`
   height: 20px;
   width: 20px;
   background-color: transparent;
-  border: 1px solid gray;
-
-  &:hover {
-    background-color: #c7c5c1;
-  }
 `;
 
 export const CategoriesTitle = styled.div`
   margin-bottom: 14px;
 `;
 
-export const CategoriesThemeBlock = styled.div`
-  display: flex;
-  gap: 10px;
-  width: auto;
-  height: 30px;
-  padding: 8px 20px;
-  border-radius: 24px;
-  margin-right: 7px;
-`;
+// checkboxs
 
-export const CategoriesTheme = styled.div`
+export const CategoriesThemeBlock = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
-`;
-export const CategoriesName = styled.p`
+  gap: 7px;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
-  white-space: nowrap;
-`;
-
-// checkboxs
-
-export const RadioLabel = styled.label`
-  display: inline-block;
-  padding: 5px 14px;
-  cursor: pointer;
-  border-radius: 24px;
-  font-size: 14px;
-  height: 30px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ color }) => color};
-  opacity: ${({ checked }) => (checked ? 1 : 0.5)};
-  font-weight: ${({ checked }) => (checked ? "bold" : "normal")};
+  letter-spacing: 0em;
+  text-align: center;
 `;
 
 export const RadioInput = styled.input`
+  display: block;
+`;
 
+export const RadioLabel = styled.label`
+  display: inline-block;
+  cursor: pointer;
+  height: 30px;
+  border-radius: 24px;
+  padding: 8px 20px;
+  background-color: ${({ $color }) =>
+    topicStyles[$color]?.backgroundColor || "#FFF"};
+  color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
+
+  opacity: 0.4;
+
+  ${RadioInput}:checked+& {
+    opacity: 1;
+  }
 `;

@@ -7,14 +7,14 @@ import { fetchAddTask } from "../../../API";
 import { useUserContext } from "../../../contexts/usercontext";
 
 export default function CreateTaskModal() {
-  const {user} = useUserContext()
+  const { user } = useUserContext();
   const [newTask, setNewTask] = useState({
     title: "",
     description: "",
     topic: "",
-    date: "",
   });
   const [selectedDate, setSelectedDate] = useState();
+
   const handleTaskSubmit = async (e) => {
     e.preventDefault();
     const taskData = {
@@ -24,14 +24,12 @@ export default function CreateTaskModal() {
     await fetchAddTask({
       task: taskData,
       token: user.token,
-    })
+    });
     console.log(taskData);
   };
 
-  // const [checked, setChecked] = useState('');
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // setChecked(e.target.value);
     setNewTask({
       ...newTask, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
@@ -46,7 +44,7 @@ export default function CreateTaskModal() {
             <S.PopNewCardContent>
               <S.PopNewCardTitle>Создание задачи</S.PopNewCardTitle>
               <S.PopNewCardClose>
-                <Link to={appRoutes.HOME}>X</Link>
+                <Link to={appRoutes.HOME}>&#10006;</Link>
               </S.PopNewCardClose>
               <S.PopNewCardWrap>
                 <S.PopNewCardForm id="formNewCard" action="#">
@@ -96,12 +94,7 @@ export default function CreateTaskModal() {
                   value="Web Design"
                   onChange={handleInputChange}
                 />
-                <S.RadioLabel
-                  htmlFor="radio1"
-                  backgroundColor="#ffe4c2"
-                  color="#ff6d00"
-                
-                >
+                <S.RadioLabel htmlFor="radio1" $color="_orange">
                   Web Design
                 </S.RadioLabel>
 
@@ -112,12 +105,7 @@ export default function CreateTaskModal() {
                   value="Research"
                   onChange={handleInputChange}
                 />
-                <S.RadioLabel
-                  htmlFor="radio2"
-                  backgroundColor="#b4fdd1"
-                  color="#06b16e"
-                
-                >
+                <S.RadioLabel htmlFor="radio2" $color="_green">
                   Research
                 </S.RadioLabel>
 
@@ -128,11 +116,7 @@ export default function CreateTaskModal() {
                   value="Copywriting"
                   onChange={handleInputChange}
                 />
-                <S.RadioLabel
-                  htmlFor="radio3"
-                  backgroundColor="#e9d4ff"
-                  color="#9a48f1"
-                >
+                <S.RadioLabel htmlFor="radio3" $color="_purple">
                   Copywriting
                 </S.RadioLabel>
               </S.CategoriesThemeBlock>
