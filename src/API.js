@@ -1,0 +1,102 @@
+// const token = "bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck";
+const baseHost = "https://wedev-api.sky.pro/api/kanban";
+const userHost = "https://wedev-api.sky.pro/api/user";
+
+export async function getTasks({ token }) {
+  const response = await fetch(baseHost, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.status === 200) {
+    throw new Error("Ошибка");
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function fetchReg({ login, name, password }) {
+  const response = await fetch(userHost, {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      name,
+      password,
+    }),
+  });
+  if (response.status === 400) {
+    throw new Error("Такой пользователь уже существует");
+  }
+  return await response.json();
+}
+
+export async function fetchLogin({ login, password }) {
+  const response = await fetch(userHost + "/login", {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      password,
+    }),
+  });
+  if (response.status === 403) {
+    throw new Error("Неверный логин или пароль");
+  }
+  return await response.json();
+}
+
+export async function fetchAddTask({ task, token }) {
+  const response = await fetch(baseHost, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(task, token),
+  });
+  if (!response.ok) {
+    throw new Error("Ошибка добавления задачи");
+  }
+  return await response.json();
+}
+
+export async function fetchDeleteTask({ _id }) {
+  const response = await fetch(baseHost + "/" + _id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Ошибка удаления задачи");
+  }
+  return await response.json();
+}
+export async function changeTask({
+  title,
+  topic,
+  status,
+  description,
+  date,
+  _id,
+}) {
+  const response = await fetch(baseHost + "/" + _id, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+
+  if (response.status === 201) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error("Не удалось редактировать задачу, попробуйте снова");
+  }
+}

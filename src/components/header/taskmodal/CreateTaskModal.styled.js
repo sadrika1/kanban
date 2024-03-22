@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Hovers } from "../../../styled/hover";
 import { topicStyles } from "../../../styled/topic";
 
 export const PopNewCard = styled.div`
@@ -29,7 +30,7 @@ export const PopNewCardBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
-  max-width: 630px;
+  max-width: 730px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
@@ -53,7 +54,6 @@ export const PopNewCardTitle = styled.h3`
 export const PopNewCardWrap = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
 `;
 
 export const PopNewCardForm = styled.form`
@@ -151,9 +151,11 @@ export const CreateNewCardButton = styled.button`
   line-height: 1;
   color: #ffffff;
   float: right;
+
+  ${Hovers.hover03}
 `;
 
-export const PopNewCardClose = styled.button`
+export const PopNewCardClose = styled.span`
   position: absolute;
   top: 20px;
   right: 30px;
@@ -162,33 +164,41 @@ export const PopNewCardClose = styled.button`
   height: 20px;
   width: 20px;
   background-color: transparent;
-  border: 1px solid gray;
 `;
 
 export const CategoriesTitle = styled.div`
   margin-bottom: 14px;
 `;
 
-export const CategoriesThemeBlock = styled.div`
-  display: flex;
-  gap: 30px;
-  width: auto;
-  height: 30px;
-  padding: 8px 20px;
-  border-radius: 24px;
-  margin-right: 7px;
-  opacity: 0.4;
-`;
+// checkboxs
 
-export const CategoriesTheme = styled.div`
+export const CategoriesThemeBlock = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
-`;
-export const CategoriesName = styled.p`
+  gap: 7px;
+  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
-  white-space: nowrap;
+  letter-spacing: 0em;
+  text-align: center;
+`;
+
+export const RadioInput = styled.input`
+  display: none;
+`;
+
+export const RadioLabel = styled.label`
+  display: inline-block;
+  cursor: pointer;
+  height: 30px;
+  border-radius: 24px;
+  padding: 8px 20px;
+  background-color: ${({ $color }) =>
+    topicStyles[$color]?.backgroundColor || "#FFF"};
+  color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
+  opacity: ${({ isChecked }) => (isChecked ?  1 : 0.4)}; 
+
 `;

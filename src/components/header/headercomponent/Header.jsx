@@ -1,16 +1,13 @@
-import CreateTaskModal from "../taskmodal/CreateTaskModal";
 import PopUser from "../../popuser/PopUser";
 import * as S from "./header.styled";
 import { Container } from "../../../styled/common";
-import LogoutPage from "../../../pages/logout/LogoutPage";
 import { Link, Outlet } from "react-router-dom";
 import { appRoutes } from "../../../appRoutes";
 
-export default function Header({ addCard }) {
+export default function Header() {
   return (
     <S.Header>
       <Outlet />
-      {/* <CreateTaskModal addCard={addCard}></CreateTaskModal> */}
       <Container>
         <S.HeaderBlock>
           <div className="header__logo _show _light">
@@ -25,6 +22,7 @@ export default function Header({ addCard }) {
           </div>
           <S.HeaderNav>
             <S.CreateTaskBtn
+             
               className="header__btn-main-new _hover01"
               id="btnMainNew"
             >

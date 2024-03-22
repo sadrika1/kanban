@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Hovers } from "../../../styled/hover";
 
 export const Header = styled.div`
   width: 100%;
@@ -37,4 +38,9 @@ export const CreateTaskBtn = styled.button`
   line-height: 1;
   font-weight: 500;
   margin-right: 20px;
+  & a {
+    color: white;
+  }
+
+  ${Hovers.hover03}
 `;

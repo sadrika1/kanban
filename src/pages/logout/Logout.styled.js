@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
 
 export const PopExit = styled.div`
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -25,7 +26,9 @@ export const PopExitContainer = styled.div`
 `;
 
 export const PopExitBlock = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
   background-color: #ffffff;
   max-width: 370px;
@@ -50,6 +53,7 @@ export const PopExitForm = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 5px;
 `;
 
 export const ButtonExitYes = styled.button`
@@ -66,12 +70,12 @@ export const ButtonExitYes = styled.button`
   font-size: 14px;
   line-height: 21px;
   font-weight: 500;
-  letter-spacing: -0.14px;
-  margin-right: 10px;
+  ${Hovers.hover01}
 `;
 
 export const ButtonExitNo = styled(ButtonExitYes)`
   background-color: transparent;
   border: 0.7px solid #565eef;
   color: #565eef;
+  ${Hovers.hover03}
 `;
