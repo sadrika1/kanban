@@ -60,7 +60,7 @@ export async function fetchAddTask({ task, token }) {
 }
 
 export async function fetchDeleteTask({ _id }) {
-  const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${_id}`, {
+  const response = await fetch(baseHost + "/" + _id, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -70,4 +70,33 @@ export async function fetchDeleteTask({ _id }) {
     throw new Error("Ошибка удаления задачи");
   }
   return await response.json();
+}
+export async function changeTask({
+  title,
+  topic,
+  status,
+  description,
+  date,
+  _id,
+}) {
+  const response = await fetch(baseHost + "/" + _id, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+
+  if (response.status === 201) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error("Не удалось редактировать задачу, попробуйте снова");
+  }
 }

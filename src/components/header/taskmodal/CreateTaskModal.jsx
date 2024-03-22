@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import Calendar from "../../../utils/Calendar";
 import * as S from "./CreateTaskModal.styled";
 import { appRoutes } from "../../../appRoutes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchAddTask } from "../../../API";
 import { useUserContext } from "../../../contexts/usercontext";
+import { Error } from "../../../pages/login/loginPage.styled";
 
 export default function CreateTaskModal() {
   const { user } = useUserContext();
@@ -14,6 +15,7 @@ export default function CreateTaskModal() {
     topic: "",
   });
   const [selectedDate, setSelectedDate] = useState();
+  const [error, setError] = useState(null);
 
   const handleTaskSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +23,20 @@ export default function CreateTaskModal() {
       ...newTask,
       date: selectedDate,
     };
-    await fetchAddTask({
-      task: taskData,
-      token: user.token,
-    });
-    console.log(taskData);
+    if (!newTask.title || !newTask.description || !newTask.topic) {
+      setError("Пожалуйста, заполните все поля!");
+      return;
+    }
+    try {
+      await fetchAddTask({
+        task: taskData,
+        token: user.token,
+      });
+    } catch (error) {
+      console.error(error.message);
+      setError("Неизвестная ошибка");
+    }
+    alert("Задача успешно добавлена!");
   };
 
   const handleInputChange = (e) => {
@@ -35,6 +46,9 @@ export default function CreateTaskModal() {
       [name]: value, // Обновляем нужное поле
     });
   };
+  useEffect(() => {
+    setError(null);
+  }, [newTask]);
 
   return (
     <>
@@ -86,41 +100,46 @@ export default function CreateTaskModal() {
               </S.PopNewCardWrap>
               <S.CategoriesTitle>Категория</S.CategoriesTitle>
               <S.CategoriesThemeBlock>
-                <S.RadioInput
-                  type="radio"
-                  id="radio1"
-                  name="topic"
-                  topic="Web Design"
-                  value="Web Design"
-                  onChange={handleInputChange}
-                />
-                <S.RadioLabel htmlFor="radio1" $color="_orange">
+                <S.RadioLabel
+                  $color="_orange"
+                  isChecked={newTask.topic === "Web Design"}
+                >
+                  <S.RadioInput
+                    type="radio"
+                    name="topic"
+                    topic="Web Design"
+                    value="Web Design"
+                    onChange={handleInputChange}
+                  />
                   Web Design
                 </S.RadioLabel>
 
-                <S.RadioInput
-                  type="radio"
-                  id="radio2"
-                  name="topic"
-                  value="Research"
-                  onChange={handleInputChange}
-                />
-                <S.RadioLabel htmlFor="radio2" $color="_green">
+                <S.RadioLabel
+                  $color="_green"
+                  isChecked={newTask.topic === "Research"}
+                >
+                  <S.RadioInput
+                    type="radio"
+                    name="topic"
+                    value="Research"
+                    onChange={handleInputChange}
+                  />
                   Research
                 </S.RadioLabel>
-
-                <S.RadioInput
-                  type="radio"
-                  id="radio3"
-                  name="topic"
-                  value="Copywriting"
-                  onChange={handleInputChange}
-                />
-                <S.RadioLabel htmlFor="radio3" $color="_purple">
+                <S.RadioLabel
+                  $color="_purple"
+                  isChecked={newTask.topic === "Copywriting"}
+                >
+                  <S.RadioInput
+                    type="radio"
+                    name="topic"
+                    value="Copywriting"
+                    onChange={handleInputChange}
+                  />
                   Copywriting
                 </S.RadioLabel>
               </S.CategoriesThemeBlock>
-
+              {error && <Error>{error}</Error>}
               <S.CreateNewCardButton onClick={handleTaskSubmit}>
                 Создать задачу
               </S.CreateNewCardButton>

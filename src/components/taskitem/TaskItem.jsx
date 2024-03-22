@@ -2,6 +2,7 @@ import { TopicTitleColor, topicStyles } from "../../styled/topic";
 import CalendarSVG from "../../utils/svg/CalendarSVG";
 import * as S from "./taskitem.styled";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 export default function TaskItem({ theme, title, date, id }) {
   return (
@@ -23,7 +24,7 @@ export default function TaskItem({ theme, title, date, id }) {
           </Link>
           <S.CardDateBlock>
             <CalendarSVG />
-            <S.CardDateText>{date}</S.CardDateText>
+            <S.CardDateText>{format(date, "dd.MM.yy")}</S.CardDateText>
           </S.CardDateBlock>
         </S.CardContent>
       </S.CardsCard>

@@ -17,15 +17,10 @@ const statusList = [
 ];
 
 export default function HomePage() {
-  const {user} = useUserContext()
+  const { user } = useUserContext();
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 3000);
-  // }, []);
   useEffect(() => {
     getTasks({ token: user.token })
       .then((tasks) => {
@@ -34,7 +29,7 @@ export default function HomePage() {
         console.log(tasks);
       })
       .catch((error) => {
-        alert(error)
+        alert(error);
       });
   }, [user]);
 

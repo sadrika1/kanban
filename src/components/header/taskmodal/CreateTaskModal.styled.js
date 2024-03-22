@@ -187,7 +187,7 @@ export const CategoriesThemeBlock = styled.div`
 `;
 
 export const RadioInput = styled.input`
-  display: block;
+  display: none;
 `;
 
 export const RadioLabel = styled.label`
@@ -199,10 +199,6 @@ export const RadioLabel = styled.label`
   background-color: ${({ $color }) =>
     topicStyles[$color]?.backgroundColor || "#FFF"};
   color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
+  opacity: ${({ isChecked }) => (isChecked ?  1 : 0.4)}; 
 
-  opacity: 0.4;
-
-  ${RadioInput}:checked+& {
-    opacity: 1;
-  }
 `;
